@@ -1,4 +1,4 @@
-const getProfileInfo = (session) => {
+const getProfileInfo = ({session}) => {
     VK.Api.call('users.get', {
         user_ids: session.user.id,
         fields: 'photo_50'
