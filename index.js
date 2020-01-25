@@ -1,7 +1,9 @@
-VK.init(function() {
-    // API initialization succeeded
-    // Your code here
- }, function() {
-    // API initialization failed
-    // Can reload page here
-}, '5.103');
+window.onload = () => {
+    VK.init(function () {
+        // API initialization succeeded
+        // Your code here
+    }, function () {
+        // API initialization failed
+        // Can reload page here
+    }, '5.103');
+}
