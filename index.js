@@ -1,6 +1,6 @@
 document.getElementById('vk_auth_btn').addEventListener('click', () => {
     VK.init({
-        apiId: 7294389
+        apiId: 7294436
     })
     VK.Auth.login(() => {
 
