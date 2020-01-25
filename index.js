@@ -1,9 +1,8 @@
-window.onload = () => {
-    VK.init(function () {
-        // API initialization succeeded
-        // Your code here
-    }, function () {
-        // API initialization failed
-        // Can reload page here
-    }, '5.103');
-}
+document.getElementById('vk_auth_btn').addEventListener('click', () => {
+    VK.init({
+        apiId: 7294389
+    })
+    VK.Auth.login(() => {
+
+    }, VK.access.FRIENDS)
+})
