@@ -14,7 +14,10 @@ document.getElementById('vk_auth_btn').addEventListener('click', () => {
                     ${r.response.items.map(friend => `<li>${friend.first_name} ${friend.last_name}</li>`)}
                 `
                 document.getElementById('query').addEventListener('change', e => {
-                    document.getElementById('friend-list').innerHTML = r.response.items.filter(item => item.first_name.indexOf(e.target.value) !== -1 || item.last_name.indexOf(e.target.value) !== -1)
+
+                    document.getElementById('friend-list').innerHTML = r.response.items
+                    .filter(item => item.first_name.indexOf(e.target.value) !== -1 || item.last_name.indexOf(e.target.value) !== -1)
+                    .map(friend => `<li>${friend.first_name} ${friend.last_name}</li>`)
                 })
             }
         })
