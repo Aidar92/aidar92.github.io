@@ -3,7 +3,7 @@ const getProfileInfo = ({session}) => {
         user_ids: session.user.id,
         v: "5.73",
         fields: 'photo_50'
-    }, r => { console.log(r); document.getElementById('avatar').src = r.response[0].photo_50 })
+    }, r => { document.getElementById('avatar').src = r.response[0].photo_50 })
     VK.Api.call('friends.get', {
         user_ids: session.user.id,
         v: "5.73",
@@ -24,7 +24,7 @@ const getProfileInfo = ({session}) => {
 }
 window.onload = () => {
     VK.Auth.getLoginStatus(response => {
-        if (response.session) getProfileInfo(response.session)
+        if (response.session) getProfileInfo(response)
     })
 }
 document.getElementById('vk_auth_btn').addEventListener('click', () => {
