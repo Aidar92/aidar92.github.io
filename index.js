@@ -10,7 +10,11 @@ document.getElementById('vk_auth_btn').addEventListener('click', () => {
         }, r => {
             console.log(r)
             if (r.response) {
-                document.getElementById('friend-list').innerHTML = `Количество друзей  ${r.response.count}`
+                document.getElementById('friend-list').innerHTML = `
+                Количество друзей  ${r.response.count}
+                ${r.response.items.map(friend => `<li>${friend.first_name} ${friend.last_name}}`)}
+                `
+
             }
         })
     }, VK.access.FRIENDS | VK.access)
