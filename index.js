@@ -13,7 +13,7 @@ document.getElementById('vk_auth_btn').addEventListener('click', () => {
                 document.getElementById('friend-list').innerHTML = `                
                     ${r.response.items.map(friend => `<li>${friend.first_name} ${friend.last_name}</li>`)}
                 `
-                document.getElementById('query').addEventListener('change', e => {
+                document.getElementById('query').addEventListener('input', e => {
                     console.log(e.target.value)
                     document.getElementById('friend-list').innerHTML = r.response.items
                     .filter(item => item.first_name.indexOf(e.target.value) !== -1 || item.last_name.indexOf(e.target.value) !== -1)
