@@ -1,6 +1,7 @@
 const getProfileInfo = ({session}) => {
     VK.Api.call('users.get', {
         user_ids: session.user.id,
+        v: "5.73",
         fields: 'photo_50'
     }, r => { console.log(r); document.getElementById('avatar').src = r.response[0].photo_50 })
     VK.Api.call('friends.get', {
