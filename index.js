@@ -6,7 +6,8 @@ document.getElementById('vk_auth_btn').addEventListener('click', () => {
         console.log(session.user.id)
         VK.Api.call('friends.get', {
             user_ids: session.user.id,
-            v: "5.73"
+            v: "5.73",
+            fields: 'first_name,last_name'
         }, r => {
             console.log(r)
             if (r.response) {
