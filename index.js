@@ -1,8 +1,8 @@
-const getProfileInfo = ({session}) => {
+const getProfileInfo = (session) => {
     VK.Api.call('users.get', {
         user_ids: session.user.id,
         fields: 'photo_50'
-    }, r => document.getElementById('avatar').src = r.response[0].photo_50)
+    }, r => { console.log(r); document.getElementById('avatar').src = r.response[0].photo_50 })
     VK.Api.call('friends.get', {
         user_ids: session.user.id,
         v: "5.73",
@@ -15,18 +15,18 @@ const getProfileInfo = ({session}) => {
             `
             document.getElementById('query').addEventListener('input', e => {
                 document.getElementById('friend-list').innerHTML = r.response.items
-                .filter(item => item.first_name.toLowerCase().indexOf(e.target.value) !== -1 || item.last_name.toLowerCase().indexOf(e.target.value) !== -1)
-                .map(friend => `<li>${friend.first_name} ${friend.last_name}</li>`)
+                    .filter(item => item.first_name.toLowerCase().indexOf(e.target.value) !== -1 || item.last_name.toLowerCase().indexOf(e.target.value) !== -1)
+                    .map(friend => `<li>${friend.first_name} ${friend.last_name}</li>`)
             })
         }
     })
 }
 window.onload = () => {
     VK.Auth.getLoginStatus(response => {
-        if (response.session) getProfileInfo(response)
+        if (response.session) getProfileInfo(response.session)
     })
 }
-document.getElementById('vk_auth_btn').addEventListener('click', () => {    
+document.getElementById('vk_auth_btn').addEventListener('click', () => {
     VK.Auth.login(getProfileInfo, VK.access.FRIENDS | VK.access)
 })
 
