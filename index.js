@@ -1,6 +1,6 @@
 const getProfileInfo = ({ session }) => {
-    console.log(session)
     if (session) {
+        document.getElementById('vk_auth_btn').innerText = 'Выйти'
         VK.Api.call('users.get', {
             user_ids: session.mid,
             v: "5.73",
@@ -30,6 +30,12 @@ window.onload = () => {
     VK.Auth.getLoginStatus(getProfileInfo)
 }
 document.getElementById('vk_auth_btn').addEventListener('click', () => {
-    VK.Auth.login(getProfileInfo, VK.access.FRIENDS | VK.access)
+    if (document.getElementById('vk_auth_btn').innerText === 'Войти')
+        VK.Auth.login(getProfileInfo, VK.access.FRIENDS | VK.access)
+    else VK.Auth.logout(() => {
+        document.getElementById('vk_auth_btn').innerText = 'Войти'
+        document.getElementById('avatar').src = ''
+        document.getElementById('friends-list').innerHTML = ''
+    })
 })
 
