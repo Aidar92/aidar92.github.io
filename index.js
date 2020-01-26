@@ -1,4 +1,5 @@
 const getProfileInfo = ({ session }) => {
+    console.log(session)
     if (session) {
         VK.Api.call('users.get', {
             user_ids: session.user.id,
