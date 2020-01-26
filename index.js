@@ -1,6 +1,8 @@
 const getProfileInfo = ({ session }) => {
     if (session) {
         document.getElementById('vk_auth_btn').innerText = 'Выйти'
+        document.getElementById('query').style.display = 'block'
+        document.getElementById('search_submit').style.display = 'block'
         VK.Api.call('users.get', {
             user_ids: session.mid,
             v: "5.73",
@@ -16,7 +18,7 @@ const getProfileInfo = ({ session }) => {
                 document.getElementById('friends-list').innerHTML = `                
                 ${r.response.items.map(friend => `<li class="friends-list-item">${friend.first_name} ${friend.last_name}</li>`).join("")}
             `
-                document.getElementById('search_submit').addEventListener('click', e => {
+                document.getElementById('search_submit').addEventListener('click', () => {
                     const search_value = document.getElementById('query').value
                     document.getElementById('friends-list').innerHTML = r.response.items
                         .filter(item => item.first_name.toLowerCase().indexOf(search_value.toLowerCase()) !== -1 || item.last_name.toLowerCase().indexOf(search_value.toLowerCase()) !== -1)
@@ -36,6 +38,9 @@ document.getElementById('vk_auth_btn').addEventListener('click', () => {
         document.getElementById('vk_auth_btn').innerText = 'Войти'
         document.getElementById('avatar').src = ''
         document.getElementById('friends-list').innerHTML = ''
+        document.getElementById('friends-count').innerHTML = ''
+        document.getElementById('query').style.display = 'none'
+        document.getElementById('search_submit').style.display = 'none'
     })
 })
 
