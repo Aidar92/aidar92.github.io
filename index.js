@@ -25,7 +25,10 @@ const getProfileInfo = ({ session }) => {
                         .map(friend => `<li class="friends-list-item">${friend.first_name} ${friend.last_name}</li>`).join("")
                 })
             }
-        })
+        })        
+    } else {
+        document.getElementById('query').style.display = 'none'
+        document.getElementById('search_submit').style.display = 'none'
     }
 }
 window.onload = () => {
