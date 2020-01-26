@@ -18,7 +18,7 @@ const getProfileInfo = ({ session }) => {
             `
                 document.getElementById('query').addEventListener('input', e => {
                     document.getElementById('friend-list').innerHTML = r.response.items
-                        .filter(item => item.first_name.toLowerCase().indexOf(e.target.value) !== -1 || item.last_name.toLowerCase().indexOf(e.target.value) !== -1)
+                        .filter(item => item.first_name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1 || item.last_name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1)
                         .map(friend => `<li>${friend.first_name} ${friend.last_name}</li>`)
                 })
             }
