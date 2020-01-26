@@ -16,9 +16,10 @@ const getProfileInfo = ({ session }) => {
                 document.getElementById('friends-list').innerHTML = `                
                 ${r.response.items.map(friend => `<li class="friends-list-item">${friend.first_name} ${friend.last_name}</li>`).join("")}
             `
-                document.getElementById('query').addEventListener('input', e => {
+                document.getElementById('search_submit').addEventListener('click', e => {
+                    const search_value = document.getElementById('query').value
                     document.getElementById('friends-list').innerHTML = r.response.items
-                        .filter(item => item.first_name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1 || item.last_name.toLowerCase().indexOf(e.target.value.toLowerCase()) !== -1)
+                        .filter(item => item.first_name.toLowerCase().indexOf(search_value.toLowerCase()) !== -1 || item.last_name.toLowerCase().indexOf(search_value.toLowerCase()) !== -1)
                         .map(friend => `<li class="friends-list-item">${friend.first_name} ${friend.last_name}</li>`).join("")
                 })
             }
